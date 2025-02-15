@@ -34,8 +34,13 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-		http.csrf().disable().authorizeRequests().antMatchers("/public/**").permitAll().antMatchers("/admin/**")
-				.hasAuthority("ADMIN").antMatchers("/user/**").hasAuthority("USER").anyRequest().authenticated()
+		http.csrf().disable()
+				.authorizeRequests()
+				.antMatchers("/public/**").permitAll()
+				.antMatchers("/admin/**").hasAuthority("ADMIN")
+				.antMatchers("/user/**").hasAuthority("USER")
+				.antMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+				.anyRequest().authenticated()
 				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 		http.addFilterBefore(jwtRequestFilter(), UsernamePasswordAuthenticationFilter.class);

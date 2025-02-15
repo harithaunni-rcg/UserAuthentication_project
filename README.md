@@ -21,3 +21,7 @@ git clone https://github.com/harithaunni-rcg/UserAuthentication_project.git
 •Install mysql and create a schema with name userauthentication
 •Update 'resources/application.properties' file with mysql connection details.
 •update 'docker-compose.yml' file with mysql connection details, if required
+
+## Accessing Swagger UI
+```sh
+http://localhost:8080/swagger-ui.html
